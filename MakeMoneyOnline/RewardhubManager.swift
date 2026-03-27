@@ -32,6 +32,7 @@ public class RewardhubManager {
     /// 打开某个页面
     public func openFeature(from vc: UIViewController) {
         let featureVC = MyTestVc()
+        featureVC.modalPresentationStyle = .fullScreen
         let nav = PKBaseNavVC(rootViewController: featureVC)
         
         vc.present(nav, animated: true)
