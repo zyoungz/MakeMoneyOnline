@@ -12,5 +12,6 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   # 只包含 SDK 核心文件
   s.source_files = 'MakeMoneyOnline/**/*.{swift}'
+  s.dependency 'SnapKit', '~> 5.0'   # SDK 依赖 SnapKit
 
 end
