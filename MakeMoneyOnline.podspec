@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
 
   s.platform      = :ios, '13.0'
   s.swift_version = '5.0'
-  s.source_files = 'MakeMoneyOnline/RewardhubManager.swift'
+  # 只包含 SDK 核心文件
+  s.source_files = 'MakeMoneyOnline/**/*.{swift}'
 
 end
