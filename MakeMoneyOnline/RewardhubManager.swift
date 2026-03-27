@@ -34,7 +34,7 @@ public class RewardhubManager {
         let featureVC = MyTestVc()
         let nav = PKBaseNavVC(rootViewController: featureVC)
         
-        vc.present(featureVC, animated: true)
+        vc.present(nav, animated: true)
     }
 }
 
