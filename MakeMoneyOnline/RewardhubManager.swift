@@ -32,9 +32,10 @@ public class RewardhubManager {
     /// 打开某个页面
     public func openFeature(from vc: UIViewController) {
         let featureVC = MyTestVc()
+        // 设置 modal 全屏
         featureVC.modalPresentationStyle = .fullScreen
         let nav = PKBaseNavVC(rootViewController: featureVC)
-        
+        nav.modalPresentationStyle = .fullScreen  // ✅ 关键：导航控制器也要设置
         vc.present(nav, animated: true)
     }
 }

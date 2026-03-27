@@ -96,6 +96,7 @@
 				954EB2D82F767621004168C7 /* Sources */,
 				954EB2D92F767621004168C7 /* Frameworks */,
 				954EB2DA2F767621004168C7 /* Resources */,
+				1258B7D019518BB4BA010DC3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +156,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1258B7D019518BB4BA010DC3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AC1E356C84064E770FC1BA39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
