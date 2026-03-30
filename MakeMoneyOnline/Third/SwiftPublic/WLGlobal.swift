@@ -155,7 +155,7 @@ public enum AppFrame {
     /// 返回状态栏高度
     static let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height
     /// 返回状态栏和导航栏的高度
-    static let NavAndstatusBarHeight = clStatusBarHeight() + 44
+    static let NavAndstatusBarHeight = tkStatusBarHeight() + 44
 }
 
 extension CGFloat {
@@ -193,11 +193,11 @@ extension UIColor {
 }
 
 func ADAPTX(x:CGFloat) -> CGFloat {
-    return AppFrame.Scale_Width * x
+    return AppFrame.ScreenWidth * x
 }
 
 func ADAPTY(y:CGFloat) -> CGFloat {
-    return AppFrame.Scale_Height * y
+    return AppFrame.ScreenHeight * y
 }
 
 
