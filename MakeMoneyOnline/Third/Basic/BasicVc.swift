@@ -206,7 +206,7 @@ class BasicVc: UIViewController {
         if !name.hasPrefix("MakeMoneyOnline.") {
             name = "MakeMoneyOnline." + className
         }
-        if let vcClass = NSClassFromString(name) as? PKBaseViewController.Type {
+        if let vcClass = NSClassFromString(name) as? BasicVc.Type {
             let viewController = vcClass.init()
             
             if let parameters = parameters {
@@ -304,7 +304,7 @@ class BasicVc: UIViewController {
     
 }
 
-extension PKBaseViewController {
+extension BasicVc {
     
     @IBAction @objc func back(sender: AnyObject?) {
         let vc = self.navigationController?.popViewController(animated: true) ?? nil
