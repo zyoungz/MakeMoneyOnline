@@ -8,6 +8,7 @@ targetsArray.each do |t|
   target t do
 
     pod 'SnapKit', '~> 5.0'
+    pod 'Alamofire'
     
   end
 end

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PKBaseNavVC: UINavigationController,UINavigationControllerDelegate {
+class BaseNavVC: UINavigationController,UINavigationControllerDelegate {
 
     var popDelegate:UIGestureRecognizerDelegate?
     var navBar:UINavigationBar = UINavigationBar()

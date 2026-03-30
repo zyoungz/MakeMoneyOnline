@@ -13,5 +13,6 @@ Pod::Spec.new do |s|
   # 只包含 SDK 核心文件
   s.source_files = 'MakeMoneyOnline/**/*.{swift}'
   s.dependency 'SnapKit', '~> 5.0'   # SDK 依赖 SnapKit
+  S.dependency 'Alamofire'
 
 end

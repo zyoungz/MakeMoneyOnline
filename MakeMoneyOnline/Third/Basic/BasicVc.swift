@@ -7,16 +7,17 @@
 
 import UIKit
 //import IQKeyboardManagerSwift
+import SnapKit
 
-class PKBaseViewController: UIViewController {
+class BasicVc: UIViewController {
     
     var gradientViewH: CGFloat = 351
     private var isGradientViewAdded = false
     
     var gradientColors: [CGColor] {
         [
-//            UIColor(hex: "#FFFAE7").cgColor,
-//            UIColor(hex: "#F9F9F9", alpha: 0.2).cgColor,
+            UIColor(hex: "#FFFAE7").cgColor,
+            UIColor(hex: "#F9F9F9", alpha: 0.2).cgColor,
             UIColor.white.cgColor
         ]
     }
