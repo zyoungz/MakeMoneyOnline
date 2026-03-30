@@ -27,22 +27,6 @@ func cordius(_ view:UIView, _ radius:CGFloat) {
     //    view.clipsToBounds = true
 }
 
-
-
-// 检测登录情况
-func judgeIsLogin() -> Bool {
-//    let token = UserDefaults.standard.string(forKey: AccountInfo.token)
-    let userId = User.shared.userId
-
-    if (userId > 0) {
-        // 已登录
-        return true
-    } else {
-        // 未登录
-        return false
-    }
-}
-
 //func cl_userMMKV() -> MMKV? {
 //    return (AIYOUserInfo.shared.userId ?? 0) > 0 ? MMKV(mmapID: "\(User.userIdString)") : nil
 //}
@@ -1213,58 +1197,6 @@ func isPurnInt(string: String) -> Bool {
     return scan.scanInt(&val) && scan.isAtEnd
 }
 
-func judgeIsExamine() -> Bool{
-    let isExamine = UserDefaults.standard.string(forKey: AccountInfo.isExamine)
-    if (isExamine != nil && isExamine?.count != 0) {
-        // 审核中
-        if isExamine == "1" {
-            return true
-        } else {
-            return false
-        }
-    } else {
-        return false
-    }
-}
-
-// 判断2个时间段星期几的组合
-//func judgeTwoDateWeek(_ startDateStr:String, _ endDateStr:String,_ startTime:String,_ endTime:String,_ weekStr:String) -> NSMutableArray {
-//    var startDate = startDateStr.toDate(formatter: "yyyy-MM-dd")
-//    let endDate = endDateStr.toDate(formatter: "yyyy-MM-dd")
-//    DLog("-------:\(startDate) end:\(endDate)")
-//
-//    // Formatter for printing the date, adjust it according to your needs:
-//    let fmt = DateFormatter()
-//    fmt.dateFormat = "yyyy-MM-dd"
-//
-//    let calendar = NSCalendar.current
-//
-//    let regularTimeArray = NSMutableArray()
-//    while startDate <= endDate {
-//        let currentWeekStr = getweekDay(startDate)
-//        
-//        if weekStr.contains(currentWeekStr) {
-//            var startTime:String = fmt.string(from: startDate) + " " + startTime
-//            var endTime:String = fmt.string(from: startDate) + " " + endTime
-//            startTime = stringToTimeStamp(stringTime: startTime, kAllFormatteryyyy_mm_dd_hh_mm)
-////            let startTimeStamp:Double = (startTime as NSString).doubleValue
-////            let startNum:NSNumber = NSNumber.init(value: startTimeStamp)
-//            
-//            endTime = stringToTimeStamp(stringTime: endTime, kAllFormatteryyyy_mm_dd_hh_mm)
-////            let endTimeStamp:Double = (endTime as NSString).doubleValue
-////            let endNum:NSNumber = NSNumber.init(value: endTimeStamp)
-//            
-//            let dic = ["startTimeAll":startTime,"endTimeAll":endTime] as [String : Any]
-//            DLog("------judgeTwoDateWeekdic:\(dic)")
-//
-//            regularTimeArray.add(dic)
-//        }
-//        startDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
-//    }
-//    
-//    return regularTimeArray
-//}
-
 func createLabel(_ text:String,_ font:UIFont) -> UILabel {
     let label = UILabel()
     label.text = text
@@ -1476,6 +1408,27 @@ func clearCaches(){
         //DLog("clear done")
     } catch {
         //DLog("clear Caches Error")
+    }
+}
+
+private func deleteLibraryFolderContents(folder: String) throws {
+    let manager = FileManager.default
+    let library = manager.urls(for: FileManager.SearchPathDirectory.libraryDirectory, in: .userDomainMask)[0]
+    let dir = library.appendingPathComponent(folder)
+    let contents = try manager.contentsOfDirectory(atPath: dir.path)
+    for content in contents {
+        //如果是快照就继续
+        if(content == "Snapshots"){continue;}
+        do {
+            try manager.removeItem(at: dir.appendingPathComponent(content))
+            //DLog("remove cache success:"+content)
+        } catch where ((error as NSError).userInfo[NSUnderlyingErrorKey] as? NSError)?.code == Int(EPERM) {
+            //DLog("remove cache error:"+content)
+            // "EPERM: operation is not permitted". We ignore this.
+            #if DEBUG
+                //DLog("Couldn't delete some library contents.")
+            #endif
+        }
     }
 }
 
