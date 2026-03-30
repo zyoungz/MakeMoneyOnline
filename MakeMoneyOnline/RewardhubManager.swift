@@ -8,6 +8,11 @@
 import UIKit
 import Foundation
 
+public protocol RewardhubDelegate: AnyObject {
+    /// 获取用户token
+    func getUserToken() -> String
+}
+
 public class RewardhubManager {
 
     /// APPID
@@ -17,9 +22,16 @@ public class RewardhubManager {
     /// 是否是测试环境
     var isTest:Bool = false
     
+    // 用 weak 防止循环引用
+    public weak var delegate: RewardhubDelegate?
     
     // 单例（推荐）
     public static let shared = RewardhubManager()
+    
+    // SDK 内部调用
+    public func fetchTokenFromHost() -> String {
+        return delegate?.getUserToken() ?? ""
+    }
 
     // 必须 public
     private init() {}
@@ -37,6 +49,9 @@ public class RewardhubManager {
         let nav = PKBaseNavVC(rootViewController: featureVC)
         nav.modalPresentationStyle = .fullScreen  // ✅ 关键：导航控制器也要设置
         vc.present(nav, animated: true)
+        
+        let token = RewardhubManager.shared.fetchTokenFromHost()
+        print("拿到宿主 token: \(token)")
     }
 }
 
