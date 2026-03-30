@@ -46,7 +46,7 @@ public class RewardhubManager {
         let featureVC = MyTestVc()
         // 设置 modal 全屏
         featureVC.modalPresentationStyle = .fullScreen
-        let nav = PKBaseNavVC(rootViewController: featureVC)
+        let nav = BaseNavVC(rootViewController: featureVC)
         nav.modalPresentationStyle = .fullScreen  // ✅ 关键：导航控制器也要设置
         vc.present(nav, animated: true)
         

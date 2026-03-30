@@ -158,17 +158,22 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1258B7D019518BB4BA010DC3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MakeMoneyOnline/Pods-MakeMoneyOnline-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
