@@ -23,14 +23,14 @@ public class RewardhubManager {
     var isTest:Bool = false
     
     // 用 weak 防止循环引用
-    public weak var ndelegate: RewardhubDelegate?
+    public weak var delegate: RewardhubDelegate?
     
     // 单例（推荐）
     public static let shared = RewardhubManager()
     
     // SDK 内部调用
     public func fetchTokenFromHost() -> String {
-        return ndelegate?.getUserToken() ?? ""
+        return delegate?.getUserToken() ?? ""
     }
 
     // 必须 public
