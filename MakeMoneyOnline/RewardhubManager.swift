@@ -53,6 +53,10 @@ public class RewardhubManager {
         let token = RewardhubManager.shared.fetchTokenFromHost()
         print("拿到宿主 token: \(token)")
     }
+    
+    public func test123() {
+        print("NEW SDK")
+    }
 }
 
 extension RewardhubManager {
