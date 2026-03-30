@@ -14,5 +14,6 @@ Pod::Spec.new do |s|
   s.source_files = 'MakeMoneyOnline/**/*.{swift}'
   s.dependency 'SnapKit', '~> 5.0'   # SDK 依赖 SnapKit
   s.dependency 'Alamofire'
+  s.dependency 'Kingfisher'
 
 end
