@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwifterSwift
 //#if DEBUG
 //    import CocoaDebug
 //#endif
@@ -880,4 +881,22 @@ extension Character {
     var isEmoji_kit:Bool{
         return isSimpleEmoji_kit || isCombinedIntoEmoji_kit
     }
+}
+
+
+public extension UIColor {
+    /// 主色(深粉色)
+    static let darkPinkKitColor = UIColor(hex: 0xFF65BB)
+    /// 浅粉色
+    static let lightPinkKitColor = UIColor(hex: 0xFFAAE1)
+    /// 红色
+    static let redKitColor = UIColor(hex: 0xfd2353)
+    /// 按钮颜色
+    static let btnKitColor = UIColor(hex: 0xFE597F)
+    /// 大的标题颜色
+    static let bigTitleKitColor = UIColor(hex: 0x471B27)
+    /// 小标题
+    static let smallTitleKitColor = UIColor(hex: 0x272727)
+    /// 灰色
+    static let grayKitColor = UIColor(hex: 0xB3B3B3)
 }

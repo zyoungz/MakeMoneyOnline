@@ -8,26 +8,50 @@
 import UIKit
 import ObjectMapper
 
+enum RewardCellType:Int {
+    /// 领取新人现金红包
+    case getNewerCash = 1
+    /// 完成首次提现
+    case firstWithdrawal
+    /// 完成签到
+    case sign
+    /// 看视频赚钱
+    case makeMoneyByWatching
+    /// 点击立得金币
+    case getCoinbyClicking
+    /// 逛商场赚钱
+    case makeMoneyByShop
+    /// 每小时发奖励
+    case sendRewardEveryHour
+    /// 打开消息通知
+    case notification
+}
+
 struct RewardhubModel: Mappable {
 
-    /// 0 点亮了 1 升级了 2 降级了
-    var type:Int = 0
-    /// 火花名称
-    var chatLevelName:String = ""
-    /// 火花图标
-    var chatLevelIcon:String = ""
-    /// 等级
-    var chatLevel:Int = 0
-    /// icon名称 （埋点用）
-    var iconTypeName:String = ""
+    /// 类型
+    var type:RewardCellType = .getNewerCash
+    /// 图标
+    var imageUrl:String = ""
+    /// 标题
+    var title:String = ""
+    /// 描述
+    var desc:String = ""
+    /// 按钮文本
+    var btnText:String = ""
+    /// 按钮状态
+    var btnStatus:Int = 0
+    
+    init() {}  // 👈 手动加一个默认构造函数
     
     init?(map: Map) {}
 
     mutating func mapping(map: Map) {
         type            <- map["type"]
-        chatLevelName   <- map["chatLevelName"]
-        chatLevelIcon   <- map["chatLevelIcon"]
-        chatLevel       <- map["chatLevel"]
-        iconTypeName    <- map["iconTypeName"]
+        imageUrl        <- map["imageUrl"]
+        title           <- map["title"]
+        desc            <- map["desc"]
+        btnText         <- map["btnText"]
+        btnStatus       <- map["btnStatus"]
     }
 }

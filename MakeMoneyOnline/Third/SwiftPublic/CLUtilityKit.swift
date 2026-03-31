@@ -10,7 +10,7 @@ import Kingfisher
 import Foundation
 import SwifterSwift
 
-class CLUtility: NSObject {
+class CLUtilityKit: NSObject {
     
     static func saveGeTuiDeviceToken_kit(_ token: String) {
         TTUtility.setValueInUserDefault_kit(token, key: "kGeTuiDeviceTokenKit")

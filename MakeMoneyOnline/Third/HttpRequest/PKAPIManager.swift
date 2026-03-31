@@ -17,10 +17,10 @@ func cpString() -> String? {
     let currentTimeZone = TimeZone.current
     let currentDate = Date()
     let offsetSeconds = currentTimeZone.secondsFromGMT(for: currentDate)
-    let offsetHours = offsetSeconds / 3600
+//    let offsetHours = offsetSeconds / 3600
     
-    let width = UIScreen.main.bounds.width
-    let height = UIScreen.main.bounds.height
+//    let width = UIScreen.main.bounds.width
+//    let height = UIScreen.main.bounds.height
     
     let mutableDictionary = NSMutableDictionary()
 //    if (PKDevice.deviceId.isEmpty) {
