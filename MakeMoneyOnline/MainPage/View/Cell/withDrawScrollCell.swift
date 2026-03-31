@@ -47,7 +47,7 @@ class withDrawScrollCell: FSPagerViewCell {
     /// 微信图标
     private lazy var iconImgView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .green
+        view.image = UIImage(named: "rewardhub_wechat")
         view.contentMode = .scaleAspectFit
         view.roundedCornersKit(cornerRadius: 10)
         

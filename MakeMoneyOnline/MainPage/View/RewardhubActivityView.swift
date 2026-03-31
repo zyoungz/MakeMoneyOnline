@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RewardhubActivityCell: UICollectionViewCell {
+class RewardhubActivityView: UIView {
     
     /// 高度
     static var activityHeight:CGFloat = 80.0
@@ -88,9 +88,8 @@ class RewardhubActivityCell: UICollectionViewCell {
     
     private func setupUI() {
         self.backgroundColor = .clear
-        self.contentView.backgroundColor = .clear
         
-        self.contentView.addSubview(whiteBgView)
+        addSubview(whiteBgView)
         whiteBgView.addSubview(iconImgView)
         whiteBgView.addSubview(titleLabel)
         whiteBgView.addSubview(descLabel)
@@ -126,7 +125,7 @@ class RewardhubActivityCell: UICollectionViewCell {
 }
 
 
-extension RewardhubActivityCell {
+extension RewardhubActivityView {
     /// 点击按钮
     @objc private func optButtonAction() {
         
