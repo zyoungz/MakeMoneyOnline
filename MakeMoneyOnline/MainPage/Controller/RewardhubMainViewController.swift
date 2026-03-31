@@ -45,6 +45,9 @@ class RewardhubMainViewController: BaseViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
         
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .always
@@ -56,7 +59,7 @@ class RewardhubMainViewController: BaseViewController {
     /// 说明
     private let descLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = getAttributed_kit(input: "如有疑问请参考###《活动规则》###\n本活动与Apple.Inc无关", attrs: [NSAttributedString.Key.foregroundColor: UIColor.bigTitleKitColor], lineSpacing: 20, textAlignment: .center)
+        label.text = "如有疑问请参考###《活动规则》###\n本活动与Apple.Inc无关"
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textColor = UIColor.black
         label.textAlignment = .center
@@ -71,14 +74,22 @@ class RewardhubMainViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.hiddenBackBt = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        initData()
     }
     
     /// UI
     private func setupUI() {
+        self.view.backgroundColor = UIColor.lightPinkKitColor
         self.view.addSubview(descLabel)
         self.view.addSubview(collectionView)
         
@@ -94,12 +105,25 @@ class RewardhubMainViewController: BaseViewController {
             make.bottom.equalTo(descLabel.snp.top).offset(-25)
         }
     }
-
+    
+    /// 初始化数据
+    private func initData() {
+        self.viewModel.updateSectionList()
+        
+        self.collectionView.reloadData()
+    }
+    
 }
 
 // FIXME: ---- UICollectionViewDelegate & UICollectionViewDataSource
 extension RewardhubMainViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    /// 实现UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         guard self.viewModel.sectionList.count > 0 else { return .zero }

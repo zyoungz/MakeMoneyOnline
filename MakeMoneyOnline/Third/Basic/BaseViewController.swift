@@ -52,7 +52,7 @@ class BaseViewController: UIViewController {
     
     lazy var backBt: UIButton = {
         let bt = UIButton(type: .custom)
-        bt.backgroundColor = .white
+        bt.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         bt.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysOriginal), for: .normal)
         bt.roundedCornersKit(cornerRadius: 35/2.0)
         
