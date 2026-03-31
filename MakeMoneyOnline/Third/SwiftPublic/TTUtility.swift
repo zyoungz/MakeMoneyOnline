@@ -11,15 +11,15 @@ import UIKit
 //    import CocoaDebug
 //#endif
 
-let tkDevice_Width = UIScreen.main.bounds.width
-let tkDevice_Height = UIScreen.main.bounds.height
+let tkDevice_Width_kit = UIScreen.main.bounds.width
+let tkDevice_Height_kit = UIScreen.main.bounds.height
 
 typealias voidClosure = (() ->Void)
 typealias optionVoidClosure = (()->Void)?
 typealias boolClosure = ((Bool) -> Void)
 typealias optionBoolClosure = ((Bool) -> Void)?
 
-public func DLog<T>(_ message : T, file : String = #file, funcName : String = #function, lineNum : Int = #line) {
+public func DLog_kit<T>(_ message : T, file : String = #file, funcName : String = #function, lineNum : Int = #line) {
     #if DEBUG
         let fileName = (file as NSString).lastPathComponent
         print("\n<=====> \(Date())  \(fileName) (line: \(lineNum)): \(message)\n")
@@ -30,19 +30,19 @@ public func DLog<T>(_ message : T, file : String = #file, funcName : String = #f
     #endif
 }
 
-public func tkPostNotification(name: NSNotification.Name, obj:Any? = nil) {
+public func tkPostNotification_kit(name: NSNotification.Name, obj:Any? = nil) {
     NotificationCenter.default.post(name: name, object: obj)
 }
 
-public func tkAddNotification(observer: Any, selector:Selector,name: NSNotification.Name,obj: Any? = nil) {
+public func tkAddNotification_kit(observer: Any, selector:Selector,name: NSNotification.Name,obj: Any? = nil) {
     NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: obj)
 }
 
-public func tkRemoveNotification(observer: Any){
+public func tkRemoveNotification_kit(observer: Any){
     NotificationCenter.default.removeObserver(observer)
 }
 
-public func tkStatusBarHeight() -> CGFloat {
+public func tkStatusBarHeight_kit() -> CGFloat {
     if #available(iOS 13, *) {
         let window = tkCurrentWindow()
         var height = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
@@ -55,7 +55,7 @@ public func tkStatusBarHeight() -> CGFloat {
     }
 }
 
-public func tkSafeAreaBottom() -> CGFloat {
+public func tkSafeAreaBottom_kit() -> CGFloat {
     if let window = tkCurrentWindow() {
         if #available(iOS 11.0, *) {
             return window.safeAreaInsets.bottom
@@ -65,62 +65,62 @@ public func tkSafeAreaBottom() -> CGFloat {
     return 0
 }
 
-public func tkIsFullScreenIphone() -> Bool {
-    let bottom = tkSafeAreaBottom()
+public func tkIsFullScreenIphone_kit() -> Bool {
+    let bottom = tkSafeAreaBottom_kit()
     return bottom > 0
 }
 
-public func tkIsPhone() -> Bool {
+public func tkIsPhone_kit() -> Bool {
     return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone
 }
 
-func tkRandowColor() -> UIColor {
-    return tkRandowColor(alpha: 1.0)
+func tkRandowColor_kit() -> UIColor {
+    return tkRandowColor_kit(alpha: 1.0)
 }
 
-func tkRandowColor(alpha: CGFloat) -> UIColor {
+func tkRandowColor_kit(alpha: CGFloat) -> UIColor {
     let rValue = arc4random() % 255
     let gValue = arc4random() % 255
     let bValue = arc4random() % 255
     return UIColor(red: CGFloat(rValue)/255.0, green: CGFloat(gValue)/255.0, blue: CGFloat(bValue)/255.0, alpha: alpha)
 }
 
-public func tkColor(hex: String, alpha: CGFloat = 1) -> UIColor {
-    return UIColor(hex: hex, alpha: alpha)
+public func tkColor_kit(hex: String, alpha: CGFloat = 1) -> UIColor {
+    return UIColor(hex_kit: hex, alpha: alpha)
 }
 
-public func tkColor(r:CGFloat, g:CGFloat, b: CGFloat, alpha: CGFloat = 1) -> UIColor {
-    return UIColor(r, g: g, b: b, alpha: alpha)
+public func tkColor_kit(r:CGFloat, g:CGFloat, b: CGFloat, alpha: CGFloat = 1) -> UIColor {
+    return UIColor(red: r, green: g, blue: b, alpha: alpha)
 }
 
-func tkDoucumentPath() -> String {
+func tkDoucumentPath_kit() -> String {
     let string = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
     return string
 }
 
-func tkCachePath() -> String {
+func tkCachePath_kit() -> String {
     let string = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first ?? ""
     return string
 }
 
-func tkCachePathAppend(_ string: String) -> String {
-    guard !tkCachePath().isEmpty else { return "" }
+func tkCachePathAppend_kit(_ string: String) -> String {
+    guard !tkCachePath_kit().isEmpty else { return "" }
     
-    let home = tkCachePath() as NSString
+    let home = tkCachePath_kit() as NSString
     let path = home.appendingPathComponent(string)
     return path
 }
 
-func tkDoucumentPathAppend(_ string: String) -> String {
-    guard !tkDoucumentPath().isEmpty else { return "" }
+func tkDoucumentPathAppend_kit(_ string: String) -> String {
+    guard !tkDoucumentPath_kit().isEmpty else { return "" }
     
-    let home = tkDoucumentPath() as NSString
+    let home = tkDoucumentPath_kit() as NSString
     let path = home.appendingPathComponent(string)
     return path
 }
 
 /// 获取当前VC, 不支持多窗口, 如果实现了SceneDelegate 则无法使用此方法查找, rootViewController的获取不同
-func tkCurrentViewController() -> UIViewController? {
+func tkCurrentViewControllerKit_kit() -> UIViewController? {
     var vc = tkCurrentWindow()?.rootViewController
     while true {
         if let nav = vc as? UINavigationController {
@@ -140,8 +140,8 @@ func tkCurrentViewController() -> UIViewController? {
 }
 
 extension UIColor {
-    convenience init(hex: String, alpha: CGFloat = 1.0) {
-        var hexFormatted = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
+    convenience init(hex_kit: String, alpha: CGFloat = 1.0) {
+        var hexFormatted = hex_kit.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
 
         if hexFormatted.hasPrefix("#") {
             hexFormatted = String(hexFormatted.dropFirst())
@@ -158,15 +158,15 @@ extension UIColor {
                   alpha: alpha)
     }
     
-    convenience init(_ r: CGFloat, g: CGFloat, b: CGFloat, alpha:CGFloat = 1) {
-        self.init(red: r / 255.0, green: g/255.0, blue:b/255.0, alpha: alpha)
+    convenience init(_ r_kit: CGFloat, g_kit: CGFloat, b_kit: CGFloat, alpha:CGFloat = 1) {
+        self.init(red: r_kit / 255.0, green: r_kit/255.0, blue:r_kit/255.0, alpha: alpha)
     }
 }
 
 extension NSObject: TTNamespaceWrappable{}
 extension TTTypeWrapperProtocol where WrappedType: NSObject{
     
-    func className() -> String{
+    func className_kit() -> String{
         let cls = type(of: wrappedValue)
         return NSStringFromClass(cls)
     }
@@ -175,7 +175,7 @@ extension TTTypeWrapperProtocol where WrappedType: NSObject{
 
 extension Array {
     
-    func jsonString(prettify: Bool = false) -> String? {
+    func jsonString_kit(prettify: Bool = false) -> String? {
         guard JSONSerialization.isValidJSONObject(self) else { return nil }
         let options = (prettify == true) ? JSONSerialization.WritingOptions.prettyPrinted : JSONSerialization.WritingOptions()
         guard let jsonData = try? JSONSerialization.data(withJSONObject: self, options: options) else { return nil }
@@ -197,16 +197,16 @@ extension Array {
 extension Date: TTNamespaceWrappable{}
 extension TTTypeWrapperProtocol where WrappedType ==  Date {
     /// 获取相隔多少个自然天
-    func daysSince(_ toDate: Date) -> Int {
+    func daysSince_kit(_ toDate: Date) -> Int {
         // 因为系统的计算方法, 相隔的两天如果有一天不足24小时是不会算入其中,所以手动将时间设为0:00 来进行比较
-        let startDate = wrappedValue.tt.beginning(of: .day)
-        let endData = toDate.tt.beginning(of: .day)
+        let startDate = wrappedValue.tt.beginning_kit(of: .day)
+        let endData = toDate.tt.beginning_kit(of: .day)
         guard let finalSd = startDate, let finalEnd = endData else { return 0 }
         let components = Calendar.current.dateComponents([.day], from: finalSd, to: finalEnd)
         return components.day ?? 0
     }
     
-    func beginning(of component: Calendar.Component) -> Date? {
+    func beginning_kit(of component: Calendar.Component) -> Date? {
         let calender = Calendar.current
         if component == .day {
             return calender.startOfDay(for: wrappedValue)
@@ -245,7 +245,7 @@ extension String: TTNamespaceWrappable{}
 extension TTTypeWrapperProtocol where WrappedType ==  String {
     
     /// json 字符串数
-    func jsonToArray<T>(elementsType: T.Type)->Array<T>{
+    func jsonToArray_kit<T>(elementsType: T.Type)->Array<T>{
         
         let arr = [T]()
         do{
@@ -260,7 +260,7 @@ extension TTTypeWrapperProtocol where WrappedType ==  String {
         
     }
     
-    func transformToPinYin() -> String {
+    func transformToPinYin_kit() -> String {
         
         let mutableString = NSMutableString(string: wrappedValue)
         //把汉字转为拼音
@@ -273,7 +273,7 @@ extension TTTypeWrapperProtocol where WrappedType ==  String {
     }
     
     /// NSRange转化为range
-    func range(from nsRange: NSRange) -> Range<String.Index>? {
+    func range_kit(from nsRange: NSRange) -> Range<String.Index>? {
         guard
             let from16 = wrappedValue.utf16.index(wrappedValue.utf16.startIndex, offsetBy: nsRange.location, limitedBy: wrappedValue.utf16.endIndex),
             let to16 = wrappedValue.utf16.index(from16, offsetBy: nsRange.length, limitedBy: wrappedValue.utf16.endIndex),
@@ -284,16 +284,16 @@ extension TTTypeWrapperProtocol where WrappedType ==  String {
     }
     
     /// range转换为NSRange
-    func nsRange(from range: Range<String.Index>) -> NSRange {
+    func nsRange_kit(from range: Range<String.Index>) -> NSRange {
         return NSRange(range, in: wrappedValue)
     }
     
-    func boundingSize(maxSize: CGSize, font: UIFont) -> CGSize {
+    func boundingSize_kit(maxSize: CGSize, font: UIFont) -> CGSize {
         let nsStr = wrappedValue as NSString
         return nsStr.boundingRect(with: maxSize, options: [NSStringDrawingOptions.usesFontLeading, NSStringDrawingOptions.usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: font], context: nil).size
     }
     /// 根据给定的最大字节长度, 返回截取过的字符串, 注意是字节长度, 比如一个汉字一般占3个字节
-    func truncateString(with maxbyteLength: Int) -> String {
+    func truncateString_kit(with maxbyteLength: Int) -> String {
         let utf8 = wrappedValue.utf8
         if utf8.count <= maxbyteLength {
             return wrappedValue
@@ -308,11 +308,11 @@ extension TTTypeWrapperProtocol where WrappedType ==  String {
 
 extension TTTypeWrapperProtocol where WrappedType: NSLayoutConstraint {
     
-    func add(_ x: CGFloat) {
+    func add_kit(_ x: CGFloat) {
         wrappedValue.constant += x
     }
     
-    func mutiply(_ x: CGFloat) {
+    func mutiply_kit(_ x: CGFloat) {
         wrappedValue.constant = wrappedValue.constant * x
     }
     
@@ -320,7 +320,7 @@ extension TTTypeWrapperProtocol where WrappedType: NSLayoutConstraint {
 
 extension TTTypeWrapperProtocol where WrappedType: UIView {
     
-    func scale(to offset: CGPoint, animation: Bool = false, duration: TimeInterval = 0.35, completion: ((Bool) -> Void)?) {
+    func scale_kit(to offset: CGPoint, animation: Bool = false, duration: TimeInterval = 0.35, completion: ((Bool) -> Void)?) {
         if animation {
             UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options:[], animations: {
                 //
@@ -333,7 +333,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
         }
     }
     
-    func zoomInAnimation(duration: TimeInterval = 0.35, startClosure: optionVoidClosure = nil, progress: optionVoidClosure = nil, completion: ((Bool) -> Void)?)  {
+    func zoomInAnimation_kit(duration: TimeInterval = 0.35, startClosure: optionVoidClosure = nil, progress: optionVoidClosure = nil, completion: ((Bool) -> Void)?)  {
         tkDispatch_safe_main_queue {
             self.wrappedValue.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             if let start = startClosure {
@@ -355,7 +355,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
         }
     }
     
-    func zoomOutAnimation(duration: TimeInterval = 0.35 , startClosure: optionVoidClosure = nil, progress: optionVoidClosure = nil, completion: ((Bool) -> Void)? = nil) {
+    func zoomOutAnimation_kit(duration: TimeInterval = 0.35 , startClosure: optionVoidClosure = nil, progress: optionVoidClosure = nil, completion: ((Bool) -> Void)? = nil) {
         tkDispatch_safe_main_queue {
             if let startClosure = startClosure {
                 startClosure()
@@ -371,7 +371,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
         }
     }
     
-    func shake() {
+    func shake_kit() {
         let keyAnimaiton = CAKeyframeAnimation(keyPath: "transform.translation.x")
         let shakeWidth = 16.0
         keyAnimaiton.values = [-shakeWidth, 0, shakeWidth, 0, -shakeWidth, 0, shakeWidth, 0]
@@ -382,14 +382,14 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
         
     }
      /// 设置圆角
-    func setupConnerRadius(_ radius: CGFloat, borderColor: UIColor? = nil, borderWidth: CGFloat = 0) {
+    func setupConnerRadius_kit(_ radius: CGFloat, borderColor: UIColor? = nil, borderWidth: CGFloat = 0) {
         wrappedValue.layer.masksToBounds = true
         wrappedValue.layer.cornerRadius = radius
         wrappedValue.layer.borderWidth = borderWidth
         wrappedValue.layer.borderColor = borderColor?.cgColor
     }
     
-    func screenShot(size: CGSize = CGSize.zero) -> UIImage? {
+    func screenShot_kit(size: CGSize = CGSize.zero) -> UIImage? {
         var targetSize = size
         if size == CGSize.zero {
             targetSize = wrappedValue.frame.size
@@ -405,43 +405,43 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
     }
     /// 添加一个边缘拖动手势
     @discardableResult
-    func addScreenEdgePanGesture(_ target: Any? = nil, action: Selector) -> UIScreenEdgePanGestureRecognizer {
-        self.addGesture(target, action: action, cls: UIScreenEdgePanGestureRecognizer.self) as! UIScreenEdgePanGestureRecognizer
+    func addScreenEdgePanGesture_kit(_ target: Any? = nil, action: Selector) -> UIScreenEdgePanGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UIScreenEdgePanGestureRecognizer.self) as! UIScreenEdgePanGestureRecognizer
     }
     /// 添加一个长按手势
     @discardableResult
-    func addLongPressGesture(_ target: Any? = nil, action: Selector) -> UILongPressGestureRecognizer {
-        self.addGesture(target, action: action, cls: UILongPressGestureRecognizer.self) as! UILongPressGestureRecognizer
+    func addLongPressGesture_kit(_ target: Any? = nil, action: Selector) -> UILongPressGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UILongPressGestureRecognizer.self) as! UILongPressGestureRecognizer
     }
     /// 添加一个捏合手势
     @discardableResult
-    func addPinGesture(_ target: Any? = nil, action: Selector) -> UIPinchGestureRecognizer {
-        self.addGesture(target, action: action, cls: UIPinchGestureRecognizer.self) as! UIPinchGestureRecognizer
+    func addPinGesture_kit(_ target: Any? = nil, action: Selector) -> UIPinchGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UIPinchGestureRecognizer.self) as! UIPinchGestureRecognizer
     }
     /// 添加一个旋转手势
     @discardableResult
-    func addRotationGesture(_ target: Any? = nil, action: Selector) -> UIRotationGestureRecognizer {
-        self.addGesture(target, action: action, cls: UIRotationGestureRecognizer.self) as! UIRotationGestureRecognizer
+    func addRotationGesture_kit(_ target: Any? = nil, action: Selector) -> UIRotationGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UIRotationGestureRecognizer.self) as! UIRotationGestureRecognizer
     }
     /// 添加一个轻扫手势
     @discardableResult
-    func addSwipeGesture(_ target: Any? = nil, action : Selector) -> UISwipeGestureRecognizer {
-        self.addGesture(target, action: action, cls: UISwipeGestureRecognizer.self) as! UISwipeGestureRecognizer
+    func addSwipeGesture_kit(_ target: Any? = nil, action : Selector) -> UISwipeGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UISwipeGestureRecognizer.self) as! UISwipeGestureRecognizer
     }
     /// 添加一个拖动手势
     @discardableResult
-    func addPanGesture(_ target: Any? = nil, action: Selector) -> UIPanGestureRecognizer {
-        self.addGesture(target, action: action, cls: UIPanGestureRecognizer.self) as! UIPanGestureRecognizer
+    func addPanGesture_kit(_ target: Any? = nil, action: Selector) -> UIPanGestureRecognizer {
+        self.addGesture_kit(target, action: action, cls: UIPanGestureRecognizer.self) as! UIPanGestureRecognizer
     }
     /// 添加一个点击手势
     @discardableResult
-    func addTapGesture(_ target: Any? = nil, action: Selector) -> UITapGestureRecognizer {
-         self.addGesture(target, action: action, cls: UITapGestureRecognizer.self) as! UITapGestureRecognizer
+    func addTapGesture_kit(_ target: Any? = nil, action: Selector) -> UITapGestureRecognizer {
+         self.addGesture_kit(target, action: action, cls: UITapGestureRecognizer.self) as! UITapGestureRecognizer
     }
     
     ///添加手势     `@discardableResult` 用来告知编辑器结果外部可以不用接收, 否则编辑器会报黄
     @discardableResult
-    func addGesture(_ target: Any? = nil,  action: Selector, cls: UIGestureRecognizer.Type) -> UIGestureRecognizer {
+    func addGesture_kit(_ target: Any? = nil,  action: Selector, cls: UIGestureRecognizer.Type) -> UIGestureRecognizer {
         var obj = target
         if target == nil {
             obj = wrappedValue
@@ -455,11 +455,11 @@ extension TTTypeWrapperProtocol where WrappedType: UIView {
 
 // MARK: - UIButton
 extension UIButton {
-    enum DistributionStyle:Int {
+    enum DistributionStyle_kit:Int {
         case imageTop = 0, imageLeft, imageBottom, imageRight
     }
     
-    func layoutButton(distributionStyle: DistributionStyle, space: CGFloat) {
+    func layoutButton_kit(distributionStyle: DistributionStyle_kit, space: CGFloat) {
         
         let imageWidth = self.currentImage?.size.width ?? 0;
         let imageHeight = self.currentImage?.size.height ?? 0;
@@ -490,26 +490,26 @@ extension UIButton {
 
 extension TTTypeWrapperProtocol where WrappedType: UIButton {
     
-    func setImageNamed(_ imageName: String, state: UIButton.State = .normal) {
+    func setImageNamed_kit(_ imageName: String, state: UIButton.State = .normal) {
         let image = UIImage(named: imageName)
         wrappedValue.setImage(image, for: state)
     }
     
-    func setNormalImageNamed(_ imageName: String) {
-        self.setImageNamed(imageName, state: .normal)
+    func setNormalImageNamed_kit(_ imageName: String) {
+        self.setImageNamed_kit(imageName, state: .normal)
     }
     
-    func setSelectedImageNamed(_ imageName: String) {
-        self.setImageNamed(imageName, state: .selected)
+    func setSelectedImageNamed_kit(_ imageName: String) {
+        self.setImageNamed_kit(imageName, state: .selected)
     }
 }
 
 extension TTTypeWrapperProtocol where WrappedType: UIButton {
     
     /// 以拉伸部分区域的形式去改变图片, isBackground默认值为true
-    func updateImageForScretch(state: UIButton.State, isBackground: Bool = true) {
+    func updateImageForScretch_kit(state: UIButton.State, isBackground: Bool = true) {
         var image = isBackground ? wrappedValue.backgroundImage(for: state) :wrappedValue.image(for: state)
-        image = image?.tt.resizableImageForStretch()
+        image = image?.tt.resizableImageForStretch_kit()
         if isBackground {
             wrappedValue.setImage(image, for: state)
         } else {
@@ -520,7 +520,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIButton {
 // MARK: - UIImage
 extension TTTypeWrapperProtocol where WrappedType: UIImage {
     
-     func resizableImageForStretch() -> UIImage {
+     func resizableImageForStretch_kit() -> UIImage {
         let hor = wrappedValue.size.width * 0.5 - 1
         let ver = wrappedValue.size.height * 0.5 - 1
         return wrappedValue .resizableImage(withCapInsets: UIEdgeInsets(top: ver, left: hor, bottom: ver, right: hor),
@@ -529,7 +529,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIImage {
     }
     
     /// 修改图片颜色
-    func render(color:UIColor) -> UIImage? {
+    func render_kit(color:UIColor) -> UIImage? {
         guard let cgImage = wrappedValue.cgImage else {
             return nil
         }
@@ -551,7 +551,7 @@ extension TTTypeWrapperProtocol where WrappedType: UIImage {
     }
     
     
-    func resizeImage(image: UIImage, newSize: CGSize) -> UIImage? {
+    func resizeImage_kit(image: UIImage, newSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
         
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
@@ -565,18 +565,18 @@ extension TTTypeWrapperProtocol where WrappedType: UIImage {
 
 extension TTTypeWrapperProtocol where WrappedType: UIImageView {
     
-    func resizableImageForStretch() {
-        wrappedValue.image = wrappedValue.image?.tt.resizableImageForStretch()
+    func resizableImageForStretch_kit() {
+        wrappedValue.image = wrappedValue.image?.tt.resizableImageForStretch_kit()
     }
 }
 
 extension TTTypeWrapperProtocol where WrappedType: UITextField {
     
-    func setPlaceholder(_ placeholder: String, hexColor: String) {
+    func setPlaceholder_kit(_ placeholder: String, hexColor: String) {
         
         let attribute = NSMutableAttributedString(string: placeholder)
         
-        attribute.addAttributes([NSMutableAttributedString.Key.foregroundColor: tkColor(hex: hexColor)], range: NSRange(location: 0, length: attribute.length))
+        attribute.addAttributes([NSMutableAttributedString.Key.foregroundColor: tkColor_kit(hex: hexColor)], range: NSRange(location: 0, length: attribute.length))
         if let font = wrappedValue.font {
             attribute.addAttributes([NSMutableAttributedString.Key.font: font], range: NSRange(location: 0, length: attribute.length))
         }
@@ -588,7 +588,7 @@ extension TTTypeWrapperProtocol where WrappedType: UITextField {
 // MARK: - UITableView
 extension TTTypeWrapperProtocol where WrappedType: UITableView {
     
-    func register(nibCellClass cls: AnyClass, identifier: String? = nil) {
+    func register_kit(nibCellClass cls: AnyClass, identifier: String? = nil) {
         let nibName = String(describing: cls)//NSStringFromClass(cls)
 //        nibName = nibName.removingPrefix(TTUtility.spaceName()! + ".")
         let reid = identifier  == nil ? nibName: identifier!
@@ -597,7 +597,7 @@ extension TTTypeWrapperProtocol where WrappedType: UITableView {
 }
 
 extension UITableViewCell {
-    class var cellIdentifier: String {
+    class var cellIdentifier_kit: String {
         let name = String(describing: self)//NSStringFromClass(self)
 //        name = name.removingPrefix(TTUtility.spaceName()! + ".")
         return name
@@ -610,7 +610,7 @@ extension UITableViewCell {
 // MARK: - UICollectionView
 extension TTTypeWrapperProtocol where WrappedType: UICollectionView {
     
-    func register(nibCellClass nibClass: AnyClass, identifier: String? = nil) {
+    func register_kit(nibCellClass nibClass: AnyClass, identifier: String? = nil) {
         let nibName = String(describing: nibClass)//NSStringFromClass(nibClass)
 //        nibName = nibName.removingPrefix(TTUtility.spaceName()! + ".")
         var reid:String
@@ -622,7 +622,7 @@ extension TTTypeWrapperProtocol where WrappedType: UICollectionView {
         wrappedValue.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: reid)
     }
     
-    func register(supplementaryClass nibClass: AnyClass, isHeader: Bool = true, identifier: String? = nil) {
+    func register_kit(supplementaryClass nibClass: AnyClass, isHeader: Bool = true, identifier: String? = nil) {
         let nibName = String(describing: nibClass)//NSStringFromClass(nibClass)
 //        nibName = nibName.removingPrefix(TTUtility.spaceName()! + ".")
         let kind = isHeader ? UICollectionView.elementKindSectionHeader : UICollectionView.elementKindSectionFooter
@@ -634,7 +634,7 @@ extension TTTypeWrapperProtocol where WrappedType: UICollectionView {
 
 extension UICollectionReusableView {
     
-    class var reuseableViewIdentifier: String {
+    class var reuseableViewIdentifier_kit: String {
         let name = String(describing: self)//NSStringFromClass(self)
 //        name = name.removingPrefix(TTUtility.spaceName()! + ".")
         return name
@@ -642,7 +642,7 @@ extension UICollectionReusableView {
 }
 extension Bundle {
         
-    static var appName: String {
+    static var appName_kit: String {
         let dic = main.infoDictionary
         var name = dic?["CFBundleDisplayName"] as? String
         if name == nil {
@@ -652,19 +652,19 @@ extension Bundle {
         return nm
     }
     
-    static var appVersion: String {
+    static var appVersion_kit: String {
         let dic = main.infoDictionary
         let version = dic?["CFBundleShortVersionString"] as? String
         return version ?? ""
     }
     
-    static var buildVersion: String {
+    static var buildVersion_kit: String {
         let dic = main.infoDictionary
         let version = dic?["CFBundleVersion"] as? String
         return version ?? ""
     }
     
-    static func iconImage() -> UIImage? {
+    static func iconImage_kit() -> UIImage? {
         if let iconsDictionary = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
            let primaryIconDictionary = iconsDictionary["CFBundlePrimaryIcon"] as? [String: Any],
            let iconFiles = primaryIconDictionary["CFBundleIconFiles"] as? [String],
@@ -679,15 +679,15 @@ extension Bundle {
 
 // MARK: - UICollectionViewCell
 extension UICollectionViewCell {
-    class var cellIdentifier: String {
+    class var cellIdentifier_kit: String {
         let name = String(describing: self)//NSStringFromClass(self)
 //        name = name.removingPrefix(TTUtility.spaceName()! + ".")
         return name
     }
-    @objc class var itemHeight: CGFloat {
-        return 0 
+    @objc class var itemHeight_kit: CGFloat {
+        return 0
     }
-    @objc class var itemSize: CGSize {
+    @objc class var itemSize_kit: CGSize {
         return CGSize.zero
     }
 }
@@ -706,30 +706,30 @@ extension DispatchTime: @retroactive ExpressibleByFloatLiteral {
 
 class TTUtility: NSObject {
     // 获取命名空间
-    class func spaceName() -> String? {
+    class func spaceName_kit() -> String? {
         guard let spaceName = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String else {
             return nil
         }
         return spaceName
     }
     
-    static func setValueInUserDefault(_ value: Any?, key: String) {
+    static func setValueInUserDefault_kit(_ value: Any?, key: String) {
         UserDefaults.standard.setValue(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
     
-    static func valueInUserDefault(_ key: String) -> Any? {
+    static func valueInUserDefault_kit(_ key: String) -> Any? {
         UserDefaults.standard.object(forKey: key)
     }
     
-    static func removeValueInUserDefault(_ key: String) {
+    static func removeValueInUserDefault_kit(_ key: String) {
         UserDefaults.standard.removeObject(forKey: key)
         UserDefaults.standard.synchronize()
     }
     
     /* *  @param inputMsg 二维码保存的信息
        *  @param fgImage  前景图片  */
-   static func generateQRCode(inputMsg: String, fgImage: UIImage?) -> UIImage {
+   static func generateQRCode_kit(inputMsg: String, fgImage: UIImage?) -> UIImage {
         //1. 将内容生成二维码
         //1.1 创建滤镜
         let filter = CIFilter(name: "CIQRCodeGenerator")
@@ -750,7 +750,7 @@ class TTUtility: NSObject {
         guard let outImage = filter?.outputImage else { return UIImage() }
         
         //4. 获取高清图片
-        let hdImage = getHDImage(outImage)
+        let hdImage = getHDImage_kit(outImage)
         
         //5. 判断是否有前景图片
         if fgImage == nil{
@@ -758,11 +758,11 @@ class TTUtility: NSObject {
         }
         
         //6. 获取有前景图片的二维码
-        return getResultImage(hdImage: hdImage, fgImage: fgImage!)
+        return getResultImage_kit(hdImage: hdImage, fgImage: fgImage!)
     }
     
     //4. 获取高清图片
-    fileprivate static func getHDImage(_ outImage: CIImage) -> UIImage {
+    fileprivate static func getHDImage_kit(_ outImage: CIImage) -> UIImage {
         let transform = CGAffineTransform(scaleX: 10, y: 10)
         //放大图片
         let ciImage = outImage.transformed(by: transform)
@@ -771,7 +771,7 @@ class TTUtility: NSObject {
     }
     
     //获取前景图片
-    fileprivate static func getResultImage(hdImage: UIImage, fgImage: UIImage) -> UIImage {
+    fileprivate static func getResultImage_kit(hdImage: UIImage, fgImage: UIImage) -> UIImage {
         let hdSize = hdImage.size
         //1. 开启图形上下文
         UIGraphicsBeginImageContext(hdSize)
@@ -828,40 +828,40 @@ public struct TTNamespaceWrapper<T>: TTTypeWrapperProtocol {
 // FIXME: ---- 注：表情包的处理逻辑
 extension String {
     /// 是否为单个emoji表情
-    var isSingleEmoji: Bool {
-        return count == 1 && containsEmoji
+    var isSingleEmoji_kit: Bool {
+        return count == 1 && containsEmoji_kit
     }
 
     /// 包含emoji表情
-    var containsEmoji: Bool {
-        return contains{ $0.isEmoji}
+    var containsEmoji_kit: Bool {
+        return contains{ $0.isEmoji_kit}
     }
 
     /// 只包含emoji表情
-    var containsOnlyEmoji: Bool {
-        return !isEmpty && !contains{!$0.isEmoji}
+    var containsOnlyEmoji_kit: Bool {
+        return !isEmpty && !contains{!$0.isEmoji_kit}
     }
 
     /// 提取emoji表情字符串
-    var emojiString: String {
-        return emojis.map{String($0) }.reduce("",+)
+    var emojiString_kit: String {
+        return emojis_kit.map{String($0) }.reduce("",+)
     }
 
     /// 提取emoji表情数组
-    var emojis: [Character] {
-        return filter{ $0.isEmoji}
+    var emojis_kit: [Character] {
+        return filter{ $0.isEmoji_kit}
     }
 
     /// 提取单元编码标量
-    var emojiScalars: [UnicodeScalar] {
-        return filter{ $0.isEmoji}.flatMap{ $0.unicodeScalars}
+    var emojiScalars_kit: [UnicodeScalar] {
+        return filter{ $0.isEmoji_kit}.flatMap{ $0.unicodeScalars}
     }
 }
 
 // FIXME: ---- 注：表情包的处理逻辑
 extension Character {
     /// 简单的emoji是一个标量，以emoji的形式呈现给用户
-    var isSimpleEmoji: Bool {
+    var isSimpleEmoji_kit: Bool {
         guard let firstProperties = unicodeScalars.first?.properties else{
             return false
         }
@@ -871,13 +871,13 @@ extension Character {
     }
 
     /// 检查标量是否将合并到emoji中
-    var isCombinedIntoEmoji: Bool {
+    var isCombinedIntoEmoji_kit: Bool {
         return unicodeScalars.count > 1 &&
             unicodeScalars.contains { $0.properties.isJoinControl || $0.properties.isVariationSelector }
     }
 
     /// 是否为emoji表情
-    var isEmoji:Bool{
-        return isSimpleEmoji || isCombinedIntoEmoji
+    var isEmoji_kit:Bool{
+        return isSimpleEmoji_kit || isCombinedIntoEmoji_kit
     }
 }

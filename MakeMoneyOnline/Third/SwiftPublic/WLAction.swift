@@ -17,7 +17,7 @@ var downloader: ImageDownloader!
 func BJDLog<T>(_ message: T, file: String = #file, method: String = #function, line: Int = #line) {
     
     if AppConstants.LogDebug {
-        DLog("\(method)[\(line)]:\(message)")
+        DLog_kit("\(method)[\(line)]:\(message)")
     }
 }
 

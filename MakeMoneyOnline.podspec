@@ -13,8 +13,15 @@ Pod::Spec.new do |s|
   # 只包含 SDK 核心文件
   s.source_files = 'MakeMoneyOnline/**/*.{swift}'
   s.dependency 'SnapKit', '~> 5.0'   # SDK 依赖 SnapKit
-  s.dependency 'Alamofire'
-  s.dependency 'Kingfisher'
+  s.dependency 'Alamofire' 
+  s.dependency 'Kingfisher' # 图片
+  s.dependency 'MJRefresh' # 刷新
+  s.dependency 'ObjectMapper' # 对象
+  s.dependency 'FSPagerView', '~> 0.8.3' # 轮播视图
+  s.dependency 'CryptoSwift'
+  s.dependency 'SwiftyJSON' #json
+  s.dependency 'SwifterSwift'
+  s.dependency 'Moya'
 
   #----⬇️⬇️⬇️ 广告 ----
 #  s.dependency 'MSMobAdSDK/MS','2.7.12.3'

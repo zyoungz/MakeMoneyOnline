@@ -21,9 +21,14 @@ public class RewardhubManager {
     var isDebug:Bool = false
     /// 是否是测试环境
     var isTest:Bool = false
+    /// 个推ID
+    var getuiCID:String = ""
     
     // 用 weak 防止循环引用
     public weak var delegate: RewardhubDelegate?
+    
+    /// HUD用
+    var hudWindow: HUDWindow?
     
     // 单例（推荐）
     public static let shared = RewardhubManager()
@@ -46,7 +51,7 @@ public class RewardhubManager {
         let featureVC = MyTestVc()
         // 设置 modal 全屏
         featureVC.modalPresentationStyle = .fullScreen
-        let nav = BaseNavVC(rootViewController: featureVC)
+        let nav = BaseNavViewController(rootViewController: featureVC)
         nav.modalPresentationStyle = .fullScreen  // ✅ 关键：导航控制器也要设置
         vc.present(nav, animated: true)
         
@@ -57,6 +62,8 @@ public class RewardhubManager {
     public func test123() {
         print("NEW SDK")
     }
+    
+
 }
 
 extension RewardhubManager {
@@ -71,3 +78,6 @@ extension RewardhubManager {
     }
     
 }
+
+
+

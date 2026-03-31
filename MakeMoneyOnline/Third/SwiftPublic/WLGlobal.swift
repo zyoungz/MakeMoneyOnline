@@ -146,7 +146,7 @@ public enum AppFrame {
     static let Scale_Height = iPhoneX ? 736.0/667.0 : ScreenHeight / 667
     static let Scale_Width = ScreenWidth / 375
     /// 底部安全区域
-    static let kBottomMargin : CGFloat = iPhoneXSeries ? tkSafeAreaBottom() : 0
+    static let kBottomMargin : CGFloat = iPhoneXSeries ? tkSafeAreaBottom_kit() : 0
     ///底部安全区域的一半高度
     static let kBottomMidMargin : CGFloat = iPhoneXSeries ? 20 : 0
     /// 状态栏
@@ -155,7 +155,7 @@ public enum AppFrame {
     /// 返回状态栏高度
     static let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height
     /// 返回状态栏和导航栏的高度
-    static let NavAndstatusBarHeight = tkStatusBarHeight() + 44
+    static let NavAndstatusBarHeight = tkStatusBarHeight_kit() + 44
 }
 
 extension CGFloat {

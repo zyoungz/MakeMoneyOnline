@@ -11,6 +11,14 @@ targetsArray.each do |t|
     pod 'SnapKit', '~> 5.0' #约束
     pod 'Alamofire' #网络
     pod 'Kingfisher' #图片
+    pod 'CryptoSwift' # 加密
+    pod 'SwiftyJSON' #json
+    pod 'SwifterSwift'
+    pod 'Moya'
+    
+    pod 'MJRefresh' # 刷新
+    pod 'ObjectMapper' # 对象
+    pod 'FSPagerView', '~> 0.8.3' # 轮播视图
     
 #    #----⬇️⬇️⬇️ 广告 ----
 #    pod 'MSMobAdSDK/MS','2.7.12.3'
@@ -26,5 +34,25 @@ targetsArray.each do |t|
 #    #----⬆️⬆️⬆️ 广告 ----
     
     
+  end
+end
+
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      
+      # ✅ 关键：排除 arm64（模拟器）
+      # config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      
+      # ✅ 强制架构
+      # config.build_settings["ARCHS[sdk=iphonesimulator*]"] = "x86_64"
+      
+      # 最低版本
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 13.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+      
+    end
   end
 end
