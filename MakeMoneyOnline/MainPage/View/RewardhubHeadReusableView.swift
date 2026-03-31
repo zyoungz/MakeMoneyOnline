@@ -48,8 +48,7 @@ class RewardhubHeadReusableView: UICollectionReusableView {
     /// 金额背景
     private lazy var moneyBgImgView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor.redKitColor
-        view.roundedCornersKit(cornerRadius: 19.0)
+        view.image = UIImage(named: "rewardhub_top_bg")
         view.contentMode = .scaleAspectFit
         
         return view
@@ -89,7 +88,7 @@ class RewardhubHeadReusableView: UICollectionReusableView {
             make.left.equalTo(18)
             make.right.equalTo(-18)
             make.top.equalTo(autoScrollView.snp.bottom).offset(5)
-            make.height.equalTo(204)
+            make.height.equalTo(276)
         }
         
     }

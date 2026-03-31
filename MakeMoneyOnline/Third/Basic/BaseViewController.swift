@@ -52,9 +52,8 @@ class BaseViewController: UIViewController {
     
     lazy var backBt: UIButton = {
         let bt = UIButton(type: .custom)
-        bt.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         bt.setImage(UIImage(named: "back")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        bt.roundedCornersKit(cornerRadius: 35/2.0)
+        bt.roundedCornersKit(cornerRadius: 38/2.0)
         
         return bt
     }()
@@ -270,7 +269,7 @@ class BaseViewController: UIViewController {
         
         self.backBt.snp.makeConstraints { make in
             make.left.equalTo(self.navBar).offset(18)
-            make.size.equalTo(CGSize(width: 35, height: 35))
+            make.size.equalTo(CGSize(width: 38, height: 38))
             make.bottom.equalTo(-10)
         }
         
