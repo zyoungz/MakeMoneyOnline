@@ -48,7 +48,7 @@ public class RewardhubManager {
 
     /// 打开某个页面
     public func openFeature(from vc: UIViewController) {
-        let featureVC = MyTestVc()
+        let featureVC = RewardhubMainViewController()
         // 设置 modal 全屏
         featureVC.modalPresentationStyle = .fullScreen
         let nav = BaseNavViewController(rootViewController: featureVC)
