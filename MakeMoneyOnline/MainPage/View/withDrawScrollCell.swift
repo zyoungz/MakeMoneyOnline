@@ -79,7 +79,6 @@ class withDrawScrollCell: FSPagerViewCell {
             make.edges.equalToSuperview()
         }
         
-        
         avatarImgView.snp.makeConstraints { make in
             make.left.equalTo(10)
             make.centerY.equalToSuperview()
@@ -89,7 +88,6 @@ class withDrawScrollCell: FSPagerViewCell {
         titleLabel.snp.makeConstraints { make in
             make.left.equalTo(avatarImgView.snp.right).offset(10)
             make.centerY.equalToSuperview()
-            make.width.lessThanOrEqualTo(120)
         }
         
         iconImgView.snp.makeConstraints { make in

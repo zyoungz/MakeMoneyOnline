@@ -59,10 +59,11 @@ class RewardhubMainViewController: BaseViewController {
     /// 说明
     private let descLabel: UILabel = {
         let label = UILabel()
-        label.text = "如有疑问请参考###《活动规则》###\n本活动与Apple.Inc无关"
+        label.attributedText = getAttributed_kit(input: "如有疑问请参考###《活动规则》###\n本活动与Apple.Inc无关", UIColor.init(hex_kit: "#f1f1f1"))
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.grayKitColor
         label.textAlignment = .center
+        label.numberOfLines = 2
         
         return label
     }()

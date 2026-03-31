@@ -34,7 +34,13 @@ class RewardhubHeadReusableView: UICollectionReusableView {
         view.isInfinite = true
         view.delegate = self
         view.dataSource = self
+        view.scrollDirection = .vertical
         view.roundedCornersKit(cornerRadius: 15.0)
+        view.automaticSlidingInterval = 3.0
+        view.register(withDrawScrollCell.self, forCellWithReuseIdentifier: withDrawScrollCell.identifier)
+        let bannerWidth = AppFrame.ScreenWidth - 18 * 2
+        let bannerHeight = 30
+        view.itemSize = CGSize(width: bannerWidth.int, height: bannerHeight)
         
         return view
     }()
